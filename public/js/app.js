@@ -1,4 +1,5 @@
 import { store } from './state.js';
+import { initBackgroundCanvas } from './components/BackgroundCanvas.js';
 import { createNavigation } from './components/Nav.js';
 import { createOnboardingModal } from './components/Onboarding.js';
 import { createSettingsDrawer } from './components/Settings.js';
@@ -13,31 +14,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('app-root');
   if (!root) return;
 
-  root.innerHTML = '';
-  root.className = 'min-h-screen flex flex-col bg-neutral-950 text-white dark:bg-neutral-950 dark:text-white light:bg-slate-50 light:text-slate-900 transition-colors duration-300 font-sans relative overflow-x-hidden';
+  // 1. Initialize Code-Particle Floating Background Canvas
+  initBackgroundCanvas(store);
 
-  // 1. Navigation (Floating Sidebar)
+  root.innerHTML = '';
+  root.className = 'min-h-screen flex flex-col transition-colors duration-300 font-sans relative overflow-x-hidden';
+
+  // 2. Navigation (Floating Left Sidebar)
   root.appendChild(createNavigation(store));
 
-  // 2. Settings Drawer Overlay
+  // 3. Settings Drawer
   root.appendChild(createSettingsDrawer(store));
 
-  // 3. Main View Area (Shifted with md:pl-32 lg:pl-40 so floating left sidebar never overlaps content)
+  // 4. Main View Container (Shifted on desktop to accommodate left floating nav)
   const mainContent = document.createElement('main');
   mainContent.id = 'app-content';
-  mainContent.className = 'flex-1 w-full md:pl-32 lg:pl-40 md:pr-10 transition-all duration-300';
+  mainContent.className = 'flex-1 w-full md:pl-28 lg:pl-36 md:pr-8 transition-all duration-300';
   root.appendChild(mainContent);
 
-  // 4. Footer (Shifted with md:pl-32 lg:pl-40)
+  // 5. Footer (Shifted on desktop)
   const footerWrapper = document.createElement('div');
-  footerWrapper.className = 'w-full md:pl-32 lg:pl-40 md:pr-10';
+  footerWrapper.className = 'w-full md:pl-28 lg:pl-36 md:pr-8';
   footerWrapper.appendChild(createFooter(store));
   root.appendChild(footerWrapper);
 
-  // Render current page view
+  // Render Page View
   function renderView() {
     mainContent.innerHTML = '';
-    mainContent.className = 'flex-1 w-full md:pl-32 lg:pl-40 md:pr-10 transition-all duration-300 animate-fade-in';
+    mainContent.className = 'flex-1 w-full md:pl-28 lg:pl-36 md:pr-8 transition-all duration-300 animate-fade-in';
 
     switch (store.currentPage) {
       case 'home':
@@ -60,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderView();
   store.subscribe(() => renderView());
 
-  // 5. Onboarding Modal (if first visit on device)
+  // 6. Onboarding Modal (if first visit)
   if (!store.onboardingComplete) {
     document.body.appendChild(createOnboardingModal(store));
   }

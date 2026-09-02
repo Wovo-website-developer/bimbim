@@ -9,15 +9,9 @@ class StateStore {
     this.currentPage = 'home';
     this.settingsOpen = false;
 
-    // Admin State
-    this.adminAuthenticated = localStorage.getItem('wovo_admin_auth') === 'true';
-    this.adminPassword = localStorage.getItem('wovo_admin_pass') || '1234';
-    this.adminEditMode = false;
-    this.customOverrides = JSON.parse(localStorage.getItem('wovo_overrides') || '{}');
-    
     this.listeners = [];
 
-    // Ensure valid language
+    // Ensure valid language from the 9 supported locales
     if (!TRANSLATIONS[this.lang]) {
       this.lang = 'en';
     }
@@ -34,7 +28,13 @@ class StateStore {
   }
 
   notify() {
-    this.listeners.forEach(fn => fn(this));
+    this.listeners.forEach(fn => {
+      try {
+        fn(this);
+      } catch (err) {
+        console.error('State listener error:', err);
+      }
+    });
   }
 
   setLanguage(langCode) {
@@ -94,50 +94,13 @@ class StateStore {
     this.notify();
   }
 
-  // Admin Methods
-  authenticateAdmin(password) {
-    if (password === this.adminPassword) {
-      this.adminAuthenticated = true;
-      this.adminEditMode = true;
-      localStorage.setItem('wovo_admin_auth', 'true');
-      this.notify();
-      return true;
-    }
-    return false;
-  }
-
-  logoutAdmin() {
-    this.adminAuthenticated = false;
-    this.adminEditMode = false;
-    localStorage.removeItem('wovo_admin_auth');
-    this.notify();
-  }
-
-  setAdminPassword(newPassword) {
-    if (newPassword && newPassword.trim()) {
-      this.adminPassword = newPassword.trim();
-      localStorage.setItem('wovo_admin_pass', this.adminPassword);
-      this.notify();
-      return true;
-    }
-    return false;
-  }
-
-  toggleAdminEditMode(active) {
-    this.adminEditMode = active !== undefined ? active : !this.adminEditMode;
-    this.notify();
-  }
-
-  setCustomOverride(key, value) {
-    this.customOverrides[key] = value;
-    localStorage.setItem('wovo_overrides', JSON.stringify(this.customOverrides));
-    this.notify();
-  }
-
-  clearCustomOverrides() {
-    this.customOverrides = {};
-    localStorage.removeItem('wovo_overrides');
-    this.notify();
+  getContactMailtoUrl({ name, email, message }) {
+    const targetEmail = 'wovo.website.developer@gmail.com';
+    const subject = encodeURIComponent(`WOVO Project Request - ${name} [${this.region}]`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nRegion: ${this.region}\n\nProject Information:\n${message}\n\n---\nSent via WOVO Client Interface (${this.lang.toUpperCase()})`
+    );
+    return `mailto:${targetEmail}?subject=${subject}&body=${body}`;
   }
 
   applyTheme() {
@@ -159,9 +122,6 @@ class StateStore {
   }
 
   t(key) {
-    if (this.customOverrides[key]) {
-      return this.customOverrides[key];
-    }
     const langDict = TRANSLATIONS[this.lang] || TRANSLATIONS['en'];
     return langDict[key] || TRANSLATIONS['en'][key] || key;
   }

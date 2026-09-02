@@ -1,6 +1,13 @@
-// Advanced Cybernetic Vector Icon Suite for WOVO (Unified Blue Aesthetics & Zero Emojis)
+// Cybernetic Vector Icon Suite for WOVO (Unified Electric Cyan Aesthetics)
 
 export const Icons = {
+  // Container Box Helper for Unified Electric Cyan Styling
+  box: (svgContent, extraClass = "") => `
+    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center transition-all duration-200 ${extraClass}">
+      ${svgContent}
+    </div>
+  `,
+
   // Navigation & Core UI
   home: (cls = "w-6 h-6") => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -42,7 +49,7 @@ export const Icons = {
     </svg>
   `,
 
-  // Directives & Actions
+  // Actions & Controls
   arrowRight: (cls = "w-4 h-4") => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <line x1="5" y1="12" x2="19" y2="12"/>
@@ -76,7 +83,7 @@ export const Icons = {
   `,
 
   check: (cls = "w-4 h-4") => `
-    <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="20 6 9 17 4 12"/>
     </svg>
   `,
@@ -120,11 +127,11 @@ export const Icons = {
   region: (id, cls = "w-5 h-5") => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="9"/>
-      <polygon points="12 2 14.5 9 22 12 14.5 15 12 22 9.5 15 2 12 9.5 9 12 2" fill="currentColor" fill-opacity="0.15"/>
+      <polygon points="12 2 14.5 9 22 12 14.5 15 12 22 9.5 15 2 12 9.5 9 12 2" fill="currentColor" fill-opacity="0.2"/>
     </svg>
   `,
 
-  // Social & Channels (Official Brand Vectors)
+  // Brand Vectors (Electric Cyan Palette)
   tiktok: (cls = "w-5 h-5") => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="currentColor">
       <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-1.42V8.92a6.34 6.34 0 0 0-3.41.97A6.33 6.33 0 0 0 3.7 14a6.34 6.34 0 0 0 10.84 4.46V10.8a8.16 8.16 0 0 0 5.05 1.74V9.08a4.84 4.84 0 0 1-2.5-1.39 4.84 4.84 0 0 1-1.02-2.03z"/>
@@ -161,7 +168,7 @@ export const Icons = {
     </svg>
   `,
 
-  // Core Creative Feature Vectors (Blue Unified Aesthetics)
+  // Core Creative Feature Vectors
   design: (cls = "w-5 h-5") => `
     <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -238,40 +245,18 @@ export const Icons = {
     </svg>
   `,
 
-  // Admin Tools
-  editPin: (cls = "w-3.5 h-3.5") => `
-    <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M12 20h9"/>
-      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-    </svg>
-  `,
-
-  adminLock: (cls = "w-5 h-5") => `
-    <svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
-    </svg>
-  `,
-
-  // Crisp Vector Country SVG Flags for all 15 Locales
+  // Vector Country SVG Flags for the 9 Supported Locales
   flag: (code, cls = "w-5 h-3.5") => {
     const flags = {
-      tr: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 600 400"><rect width="600" height="400" fill="#E30A17"/><circle cx="210" cy="200" r="150" fill="#fff"/><circle cx="240" cy="200" r="120" fill="#E30A17"/><polygon points="340,200 378,212 355,180 378,148 340,160 328,122 316,160 278,148 301,180 278,212 316,200 328,238" fill="#fff"/></svg>`,
       en: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 741 390"><rect width="741" height="390" fill="#b22234"/><rect y="30" width="741" height="30" fill="#fff"/><rect y="90" width="741" height="30" fill="#fff"/><rect y="150" width="741" height="30" fill="#fff"/><rect y="210" width="741" height="30" fill="#fff"/><rect y="270" width="741" height="30" fill="#fff"/><rect y="330" width="741" height="30" fill="#fff"/><rect width="296" height="210" fill="#3c3b6e"/></svg>`,
+      tr: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 600 400"><rect width="600" height="400" fill="#E30A17"/><circle cx="210" cy="200" r="150" fill="#fff"/><circle cx="240" cy="200" r="120" fill="#E30A17"/><polygon points="340,200 378,212 355,180 378,148 340,160 328,122 316,160 278,148 301,180 278,212 316,200 328,238" fill="#fff"/></svg>`,
       ar: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 600 400"><rect width="600" height="400" fill="#006C35"/><path d="M150 220 h300 v10 h-300 z" fill="#fff"/><circle cx="300" cy="160" r="40" fill="none" stroke="#fff" stroke-width="8"/></svg>`,
       de: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 5 3"><rect width="5" height="1" fill="#000"/><rect y="1" width="5" height="1" fill="#DD0000"/><rect y="2" width="5" height="1" fill="#FFCC00"/></svg>`,
       fr: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 3 2"><rect width="1" height="2" fill="#002395"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#ED2939"/></svg>`,
       es: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 750 500"><rect width="750" height="500" fill="#AA151B"/><rect y="125" width="750" height="250" fill="#F1BF00"/></svg>`,
       it: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 3 2"><rect width="1" height="2" fill="#009246"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#CE2B37"/></svg>`,
-      pt: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 600 400"><rect width="240" height="400" fill="#046A38"/><rect x="240" width="360" height="400" fill="#DA291C"/><circle cx="240" cy="200" r="60" fill="#FFC72C"/></svg>`,
-      nl: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 9 6"><rect width="9" height="2" fill="#AE1C28"/><rect y="2" width="9" height="2" fill="#fff"/><rect y="4" width="9" height="2" fill="#21468B"/></svg>`,
       ru: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 9 6"><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#0039A6"/><rect y="4" width="9" height="2" fill="#D52B1E"/></svg>`,
-      zh: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 900 600"><rect width="900" height="600" fill="#DE2910"/><polygon points="150,90 167,143 223,143 178,176 195,229 150,196 105,229 122,176 77,143 133,143" fill="#FFDE00"/></svg>`,
-      ja: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 900 600"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#BC002D"/></svg>`,
-      ko: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 900 600"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="150" fill="#C60C30"/></svg>`,
-      hi: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 900 600"><rect width="900" height="200" fill="#FF9933"/><rect y="200" width="900" height="200" fill="#fff"/><rect y="400" width="900" height="200" fill="#138808"/><circle cx="450" cy="300" r="70" fill="none" stroke="#000080" stroke-width="12"/></svg>`,
-      el: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 27 18"><rect width="27" height="18" fill="#0D5EAF"/><rect y="2" width="27" height="2" fill="#fff"/><rect y="6" width="27" height="2" fill="#fff"/><rect y="10" width="27" height="2" fill="#fff"/><rect y="14" width="27" height="2" fill="#fff"/><rect width="10" height="10" fill="#0D5EAF"/><rect x="4" width="2" height="10" fill="#fff"/><rect y="4" width="10" height="2" fill="#fff"/></svg>`
+      zh: `<svg class="${cls} rounded-sm overflow-hidden inline-block align-middle shadow-sm" viewBox="0 0 900 600"><rect width="900" height="600" fill="#DE2910"/><polygon points="150,90 167,143 223,143 178,176 195,229 150,196 105,229 122,176 77,143 133,143" fill="#FFDE00"/></svg>`
     };
     return flags[code] || flags['en'];
   }
